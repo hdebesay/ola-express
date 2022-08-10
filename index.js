@@ -1,18 +1,15 @@
-var http = require("http"); 
-http.createServer(function(req,res) {
-  var path = req.url.toLowerCase();
-  switch(path) {
-    case '/':
-      res.writeHead(200, {'Content-Type': 'text/plain'});
-      res.end('Home page');
-      break;
-    case '/about':
-      res.writeHead(200, {'Content-Type': 'text/plain'});
-      res.end('About page');
-      break;
-    default:
-      res.writeHead(404, {'Content-Type': 'text/plain'});
-      res.end('Not found');
-      break;
-    }
-}).listen(process.env.PORT || 3000);
+const express = require('express')
+const app = express()
+const port = 3000
+
+app.get('/', (req, res) => {
+  res.send('Ola from Express!')
+})
+
+app.get('/about', (req, res) => {
+  res.send('About Page')
+})
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
+})
